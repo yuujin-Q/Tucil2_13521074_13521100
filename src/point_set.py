@@ -98,19 +98,21 @@ class PointSet:
 
         :return: nearest_point and recorded processing time
         """
-        start_time = time.time_ns()
+        start_time = time.time()
         min_dist = float('inf')
         nearest_pair = None
+        op_count = 0
 
         for i in range(self.p_count - 1):
             for j in range(i + 1, self.p_count):
                 curr_dist = PointSet.euclid_distance(self.get_point(i), self.get_point(j))
+                op_count += 1
                 if curr_dist < min_dist:
                     min_dist = curr_dist
                     nearest_pair = (self.get_point(i), self.get_point(j))
-        recorded_time = time.time_ns() - start_time
+        recorded_time = time.time() - start_time
 
-        return nearest_pair, min_dist, recorded_time
+        return nearest_pair, min_dist, recorded_time, op_count
 
     @staticmethod
     def euclid_distance(point1, point2):
