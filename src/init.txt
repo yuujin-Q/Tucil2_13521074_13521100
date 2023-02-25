@@ -1,1 +1,20 @@
-init
+
+main.py
+    variable set
+
+point_set.py
+    add_point
+    add_rand_point
+    add_n_rand_point
+    print_info
+
+solver.py
+    euclid_distance
+    closest_pair_bf
+    closest_pair_dnc
+`
+
+visualiser.py
+
+
+logger.py
