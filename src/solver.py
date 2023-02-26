@@ -39,17 +39,22 @@ def closest_pair_bf(points):
 
     return nearest_pair, min_dist, recorded_time, op_count
 
-#chore: Divide n Conquer
-def closest_pair_dnc_2d(points):
+def closest_pair_dnc(points):
+    """get the closest pair from point set using divide and conquer
+
+    :points: set (list) of points (tuple of numbers)
+    :return: closest pair of points, minimum distance, recorded processing time (ns), euclidean distance count
+    """
     p_count = len(points)
+    dimension = len(points[0])
     if (p_count <= 3):
         return closest_pair_bf(points)
     else:
         total_time = time.time_ns()
         imedian = p_count // 2
         median_point = points[imedian]
-        pair1, dist1, temp, ecount1 = closest_pair_dnc_2d(points[:imedian])
-        pair2, dist2, temp, ecount2 = closest_pair_dnc_2d(points[imedian:])
+        pair1, dist1, temp, ecount1 = closest_pair_dnc(points[:imedian])
+        pair2, dist2, temp, ecount2 = closest_pair_dnc(points[imedian:])
         
         min_dist = min(dist1, dist2)
         min_pair = pair1 if min_dist == dist1 else pair2
@@ -63,13 +68,16 @@ def closest_pair_dnc_2d(points):
         delta_count = len(delta_strip)
         for i in range(delta_count):
             for j in range(i + 1, delta_count):
-                if abs(delta_strip[i][1] - delta_strip[j][1]) < min_dist:
+                within_delta = True
+                for axis in range(1, dimension):
+                    within_delta = within_delta and abs(delta_strip[i][axis] - delta_strip[j][axis]) < min_dist
+
+                if within_delta:
                     dist3 = euclid_distance(delta_strip[i], delta_strip[j])
                     total_ecount += 1
                     
                     if dist3 < min_dist:
                         min_dist = dist3
                         min_pair = (delta_strip[i], delta_strip[j])
-
         
         return min_pair, min_dist, time.time_ns() - total_time, total_ecount
