@@ -1,7 +1,7 @@
 from point_set import *
 from solver import *
 import time
-
+from visualizer import *
 # MAIN FUNCTION
 p_set = []
 
@@ -41,7 +41,7 @@ print("Processing time :", timer_dnc / 1000000, "ms")
 print("Euclidean Distance Usage Count :", op_count_dnc)
 
 print()
-
+print_info(pair_dnc)
 # Validity Check
 if (dist_bf == dist_dnc):
     print("SOLUTION VALID")
@@ -50,4 +50,6 @@ else:
 
 # log
 
-# visualise
+# visualise only for 2 and 3 dimension
+if (p_dimension>1 and p_dimension<4):
+    visualizer(p_dimension, p_set, pair_dnc)
