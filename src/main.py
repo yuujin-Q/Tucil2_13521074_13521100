@@ -1,5 +1,6 @@
 from point_set import *
 from solver import *
+import time
 
 # MAIN FUNCTION
 p_set = []
@@ -20,7 +21,9 @@ print_info(p_set)
 
 # Solve by Brute Force and by Divide & Conquer
 print("=======BRUTE FORCE SOLUTION========")
-pair_bf, dist_bf, timer_bf, op_count_bf = closest_pair_bf(p_set)
+timer_bf = time.time_ns()
+pair_bf, dist_bf, op_count_bf = closest_pair_bf(p_set)
+timer_bf = time.time_ns() - timer_bf
 print("Nearest pair :", pair_bf)
 print("Distance :", dist_bf)
 print("Processing time :", timer_bf / 1000000, "ms")
@@ -29,7 +32,9 @@ print("Euclidean Distance Usage Count :", op_count_bf)
 print()
 
 print("=====DIVIDE & CONQUER SOLUTION=====")
-pair_dnc, dist_dnc, timer_dnc, op_count_dnc = closest_pair_dnc(p_set)
+timer_dnc = time.time_ns()
+pair_dnc, dist_dnc, op_count_dnc = closest_pair_dnc(p_set)
+timer_dnc = time.time_ns() - timer_dnc
 print("Nearest pair :", pair_dnc)
 print("Distance :", dist_dnc)
 print("Processing time :", timer_dnc / 1000000, "ms")
