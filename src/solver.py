@@ -5,7 +5,6 @@ contains definitions of functions & procedures used in solving the closest pair 
 """
 
 import math
-# import time
 
 def euclid_distance(point1, point2):
     """calculate euclidean distance between two points
@@ -24,7 +23,7 @@ def closest_pair_bf(points):
     """
     p_count = len(points)
     min_dist = float('inf')
-    nearest_pair = None
+    nearest_pair = []
     op_count = 0
 
     for i in range(p_count - 1):
@@ -33,7 +32,9 @@ def closest_pair_bf(points):
             op_count += 1
             if curr_dist < min_dist:
                 min_dist = curr_dist
-                nearest_pair = (points[i], points[j])
+                nearest_pair = []
+            if curr_dist <= min_dist:
+                nearest_pair.append((points[i], points[j]))
 
     return nearest_pair, min_dist, op_count
 
@@ -54,7 +55,12 @@ def closest_pair_dnc(points):
         pair2, dist2, ecount2 = closest_pair_dnc(points[imedian:])
         
         min_dist = min(dist1, dist2)
-        min_pair = pair1 if min_dist == dist1 else pair2
+        min_pair = []
+        if dist1 != dist2:
+            min_pair = pair1 if min_dist == dist1 else pair2
+        else:
+            min_pair = pair1 + pair2
+
         total_ecount = ecount1 + ecount2
         
         delta_strip = []
@@ -75,6 +81,8 @@ def closest_pair_dnc(points):
                     
                     if dist3 < min_dist:
                         min_dist = dist3
-                        min_pair = (delta_strip[i], delta_strip[j])
+                        min_pair = []
+                    if dist3 <= min_dist:
+                        min_pair.append((delta_strip[i], delta_strip[j]))
         
         return min_pair, min_dist, total_ecount
