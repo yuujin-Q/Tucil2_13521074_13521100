@@ -41,7 +41,7 @@ print("Processing time :", timer_dnc / 1000000, "ms")
 print("Euclidean Distance Usage Count :", op_count_dnc)
 
 print()
-print_info(pair_dnc)
+
 # Validity Check
 if (dist_bf == dist_dnc):
     print("SOLUTION VALID")
