@@ -3,28 +3,32 @@ from solver import *
 import time
 from visualizer import *
 
-def input_validation(param,min, max):
-    if(param<min or param>max):
-        print("Input Invalid!\n")
-        return False
-    else:
-        return True
+def int_input_validation(min, max, prompt):
+    valid = False
+    result = input(prompt)
+    while (not valid):
+        try:
+            result = int(result)
+            if result >= min and result <= max:
+                valid = True
+            else:
+                print("Input must be in between " + str(min) + " and " + str(max) +"!")
+                result = input(prompt)
+        except:
+            print("Input Invalid!")
+            result = input(prompt)
+    return result
+
+
 # MAIN FUNCTION
 p_set = []
 legal = False
 
-# Input Restrictions
-while(not legal):
-    p_dimension = int(input("Input Dimension : "))
-    if(not input_validation(p_dimension,1,100)):
-        continue
-    p_count = int(input("Input Amount of Points : "))
-    if(input_validation(p_count,1,10000)):
-        legal=True
-    else:
-        continue
-    min_max = int(input("Input Maximum & Minimum Value for All Axes : "))
-    f_prec = int(input("Input Fractional Precision : "))
+# Input Validation
+p_dimension = int_input_validation(1, 100, "Input Dimension : ")
+p_count = int_input_validation(1, 10000, "Input Amount of Points : ")
+min_max = int_input_validation(1, 10000,"Input Maximum & Minimum Value for All Axes : ")
+f_prec = int_input_validation(0, 10, "Input Fractional Precision : ")
     
 
 # Add Points and Sort by Each Axes
