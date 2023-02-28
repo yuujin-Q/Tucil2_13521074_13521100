@@ -30,9 +30,21 @@ To compile this program, you will need to install **python compilers** on the de
 $ git clone https://github.com/yuujin-Q/Tucil2_13521074_13521100.git
 ```
 2. Change the directory to the 'bin' folder <br>
-`$ cd bin`
+```sh 
+$ cd bin
+```
+
 3. Run the program <br>
-`$ ./main.exe` or open file *main.exe*
+```sh 
+$ ./main.exe
+```
+or open file *main.exe*
+
+4. (Alternative option) Run the program directly <br>
+```sh 
+$ python src/main.py
+```
+
 
 ## **Screenshot**
 
