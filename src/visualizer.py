@@ -1,3 +1,9 @@
+"""
+:file: visualizer.py
+
+visualize points and solution from the closest pair problem (2D/3D)
+"""
+
 from matplotlib import pyplot as plt
 from point_set import *
 
@@ -43,5 +49,7 @@ def visualizer(p_dimension, p_set, pair_dnc):
         for i in range(len(p_set)):
             x.append(p_set[i][0])
             y.append(p_set[i][1])
+
+    # chore: 1D
 
     plt.show()

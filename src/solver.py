@@ -107,6 +107,7 @@ def closest_pair_dnc(points):
         pair2, dist2, euclid_count2 = closest_pair_dnc(points[i_median:])
 
         min_dist = min(dist1, dist2)
+        # chore: fix duplicate solutions
         min_pair = []
         if dist1 != dist2:
             min_pair = pair1 if min_dist == dist1 else pair2
