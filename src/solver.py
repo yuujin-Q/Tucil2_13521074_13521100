@@ -15,6 +15,52 @@ def euclid_distance(point1, point2):
     """
     return math.sqrt(sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2)))
 
+"""Sorting Algorithm"""
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    l_arr = arr[:mid]
+    r_arr = arr[mid:]
+    
+    l_arr = mergeSort(l_arr)
+    r_arr = mergeSort(r_arr)
+    
+    return merge(l_arr, r_arr)
+    
+def merge(l_arr, r_arr):
+    res = []
+    i=0
+    j = 0
+    
+    while i < len(l_arr) and j < len(r_arr):
+        if l_arr[i] < r_arr[j]:
+            res.append(l_arr[i])
+            i += 1
+        else:
+            res.append(r_arr[j])
+            j += 1
+    res += l_arr[i:]
+    res += r_arr[j:]
+    
+    return res
+
+def quickSort(arr):
+    if len(arr)<=1:
+        return arr
+    pivot = arr[0]
+    l_arr = []
+    r_arr = []
+    for i in range(1, len(arr)):
+        if arr[i] < pivot:
+            l_arr.append(arr[i])
+        else:
+            r_arr.append(arr[i])
+    return quickSort(l_arr) + [pivot] + quickSort(r_arr)
+
+
+    
 def closest_pair_bf(points):
     """get the closest pair from point set using brute force
 
@@ -86,3 +132,5 @@ def closest_pair_dnc(points):
                         min_pair.append((delta_strip[i], delta_strip[j]))
         
         return min_pair, min_dist, total_ecount
+
+
