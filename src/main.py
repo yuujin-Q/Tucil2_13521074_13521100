@@ -47,17 +47,22 @@ f_precision = int_input_validation(0, 10, "Input Fractional Precision : ")
 add_n_rand_point(p_set, p_count, min_max, f_precision, p_dimension)
 p_set = quick_sort(p_set)
 
+print()
+
 # Display Point Set Information (Points, Dimension, Point Count)
-print("\nPOINT SET INFORMATION:")
-print_info(p_set)
+show_info_choice = int_input_validation(0, 1, "Show Point Set Information? (1/0) : ")
+if show_info_choice == 1:
+    print()
+    print_point_set_info(p_set)
+
+print()
 
 # Solve by Brute Force and by Divide & Conquer
 print("=======BRUTE FORCE SOLUTION========")
 timer_bf = time.time_ns()
 pair_bf, dist_bf, op_count_bf = closest_pair_bf(p_set)
 timer_bf = time.time_ns() - timer_bf
-display_solution(pair_bf, dist_bf, op_count_bf)
-print("Processing time :", timer_bf / 1000000, "ms")
+display_solution(pair_bf, dist_bf, op_count_bf, timer_bf)
 
 print()
 
@@ -65,8 +70,7 @@ print("=====DIVIDE & CONQUER SOLUTION=====")
 timer_dnc = time.time_ns()
 pair_dnc, dist_dnc, op_count_dnc = closest_pair_dnc(p_set)
 timer_dnc = time.time_ns() - timer_dnc
-display_solution(pair_dnc, dist_dnc, op_count_dnc)
-print("Processing time :", timer_dnc / 1000000, "ms")
+display_solution(pair_dnc, dist_dnc, op_count_dnc, timer_dnc)
 
 print()
 

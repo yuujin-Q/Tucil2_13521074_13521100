@@ -152,12 +152,13 @@ def closest_pair_dnc(points):
         return min_pair, min_dist, total_euclid_count
 
 
-def display_solution(solution_set, distance, euclid_count):
+def display_solution(solution_set, distance, euclid_count, solve_time):
     """prints solution
 
     :param solution_set: set of solution pairs
     :param distance: minimum distance of the closes pair problem
     :param euclid_count: euclidean distance formula usage count
+    :param solve_time: recorded processing time in ns
     """
     solution_set = set(solution_set)        # ensure unique solutions on print
     print("Solution Pair(s) :")
@@ -165,3 +166,4 @@ def display_solution(solution_set, distance, euclid_count):
         print(" ", solution[0], "and", solution[1])
     print("Distance :", distance)
     print("Euclidean Distance Usage Count :", euclid_count)
+    print("Processing time :", solve_time / 1000000, "ms")

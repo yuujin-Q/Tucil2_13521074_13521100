@@ -47,28 +47,17 @@ def add_n_rand_point(p_set, n, min_max_val, f_precision, dimension=3):
         add_rand_point(p_set, min_max_val, f_precision, dimension)
 
 
-def get_info_string(p_set):
-    """get information about current point set
+def print_point_set_info(p_set):
+    """print information about point set
 
     :param p_set: set of point(s)
-    :return: string of current point set information
     """
-    info = ""
     p_count = len(p_set)
 
-    info += "Number of Points : " + str(p_count) + "\n"
+    print("POINT SET INFORMATION:")
+    print("Number of Points : " + str(p_count))
     if p_count > 0:
-        info += "Dimension : " + str(len(p_set[0])) + "\n"
-        info += "Points :\n"
+        print("Dimension : " + str(len(p_set[0])))
+        print("Points :")
         for points in p_set:
-            info += " " + str(points) + "\n"
-    return info
-
-
-def print_info(p_set):
-    """prints information of current point set
-    
-    :param p_set: set of point(s)
-    """
-    info = get_info_string(p_set)
-    print(info)
+            print(" " + str(points))
