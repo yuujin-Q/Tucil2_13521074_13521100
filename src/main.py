@@ -2,18 +2,34 @@ from point_set import *
 from solver import *
 import time
 from visualizer import *
+
+def input_validation(param,min, max):
+    if(param<min or param>max):
+        print("Input Invalid!\n")
+        return False
+    else:
+        return True
 # MAIN FUNCTION
 p_set = []
+legal = False
 
 # Input Restrictions
-p_dimension = int(input("Input Dimension : "))
-p_count = int(input("Input Amount of Points : "))
-min_max = int(input("Input Maximum & Minimum Value for All Axes : "))
-f_prec = int(input("Input Fractional Precision : "))
+while(not legal):
+    p_dimension = int(input("Input Dimension : "))
+    if(not input_validation(p_dimension,1,100)):
+        continue
+    p_count = int(input("Input Amount of Points : "))
+    if(input_validation(p_count,1,10000)):
+        legal=True
+    else:
+        continue
+    min_max = int(input("Input Maximum & Minimum Value for All Axes : "))
+    f_prec = int(input("Input Fractional Precision : "))
+    
 
 # Add Points and Sort by Each Axes
 add_n_rand_point(p_set, p_count, min_max, f_prec, p_dimension)
-p_set = sorted(p_set)
+p_set = quickSort(p_set)
 
 # Display Point Set Information (Points, Dimension, Point Count)
 print("\nPOINT SET INFORMATION:")
