@@ -38,7 +38,7 @@ def merge_sort(arr):
 
 def merge(l_arr, r_arr):
     """merge process used in merge sort
-\
+
     :param l_arr: left array of merge sort
     :param r_arr: right array of merge sort
     :return: sorted combined array
