@@ -17,10 +17,12 @@ def euclid_distance(point1, point2):
     return math.sqrt(sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2)))
 
 
-"""Sorting Algorithm"""
-
-
 def merge_sort(arr):
+    """sort an array using merge sort algorithm
+
+    :param arr: array
+    :return: sorted array
+    """
     if len(arr) <= 1:
         return arr
 
@@ -35,6 +37,12 @@ def merge_sort(arr):
 
 
 def merge(l_arr, r_arr):
+    """merge process used in merge sort
+\
+    :param l_arr: left array of merge sort
+    :param r_arr: right array of merge sort
+    :return: sorted combined array
+    """
     res = []
     i = 0
     j = 0
@@ -53,6 +61,11 @@ def merge(l_arr, r_arr):
 
 
 def quick_sort(arr):
+    """sort an array using quick sort algorithm
+
+    :param arr: array
+    :return: sorted array
+    """
     if len(arr) <= 1:
         return arr
     pivot = arr[0]
@@ -107,8 +120,6 @@ def closest_pair_dnc(points):
         pair2, dist2, euclid_count2 = closest_pair_dnc(points[i_median:])
 
         min_dist = min(dist1, dist2)
-        # chore: fix duplicate solutions
-        min_pair = []
         if dist1 != dist2:
             min_pair = pair1 if min_dist == dist1 else pair2
         else:
@@ -139,3 +150,18 @@ def closest_pair_dnc(points):
                         min_pair.append((delta_strip[i], delta_strip[j]))
 
         return min_pair, min_dist, total_euclid_count
+
+
+def display_solution(solution_set, distance, euclid_count):
+    """prints solution
+
+    :param solution_set: set of solution pairs
+    :param distance: minimum distance of the closes pair problem
+    :param euclid_count: euclidean distance formula usage count
+    """
+    solution_set = set(solution_set)        # ensure unique solutions on print
+    print("Solution Pair(s) :")
+    for solution in solution_set:
+        print(" ", solution[0], "and", solution[1])
+    print("Distance :", distance)
+    print("Euclidean Distance Usage Count :", euclid_count)

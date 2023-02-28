@@ -50,6 +50,4 @@ def visualizer(p_dimension, p_set, pair_dnc):
             x.append(p_set[i][0])
             y.append(p_set[i][1])
 
-    # chore: 1D
-
     plt.show()

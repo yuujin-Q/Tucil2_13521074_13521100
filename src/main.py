@@ -34,11 +34,11 @@ def int_input_validation(val_min, val_max, prompt):
     return result
 
 
-# MAIN FUNCTION
+# **** MAIN FUNCTION ****
 p_set = []
 
 # Input Validation
-p_dimension = int_input_validation(1, 100, "Input Dimension : ")
+p_dimension = int_input_validation(2, 100, "Input Dimension : ")
 p_count = int_input_validation(1, 10000, "Input Amount of Points : ")
 min_max = int_input_validation(1, 10000, "Input Maximum & Minimum Value for All Axes : ")
 f_precision = int_input_validation(0, 10, "Input Fractional Precision : ")
@@ -56,10 +56,8 @@ print("=======BRUTE FORCE SOLUTION========")
 timer_bf = time.time_ns()
 pair_bf, dist_bf, op_count_bf = closest_pair_bf(p_set)
 timer_bf = time.time_ns() - timer_bf
-print("Nearest pair :", pair_bf)
-print("Distance :", dist_bf)
+display_solution(pair_bf, dist_bf, op_count_bf)
 print("Processing time :", timer_bf / 1000000, "ms")
-print("Euclidean Distance Usage Count :", op_count_bf)
 
 print()
 
@@ -67,10 +65,8 @@ print("=====DIVIDE & CONQUER SOLUTION=====")
 timer_dnc = time.time_ns()
 pair_dnc, dist_dnc, op_count_dnc = closest_pair_dnc(p_set)
 timer_dnc = time.time_ns() - timer_dnc
-print("Nearest pair :", pair_dnc)
-print("Distance :", dist_dnc)
+display_solution(pair_dnc, dist_dnc, op_count_dnc)
 print("Processing time :", timer_dnc / 1000000, "ms")
-print("Euclidean Distance Usage Count :", op_count_dnc)
 
 print()
 
