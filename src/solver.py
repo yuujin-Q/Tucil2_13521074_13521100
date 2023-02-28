@@ -6,6 +6,7 @@ contains definitions of functions & procedures used in solving the closest pair 
 
 import math
 
+
 def euclid_distance(point1, point2):
     """calculate euclidean distance between two points
 
@@ -15,25 +16,29 @@ def euclid_distance(point1, point2):
     """
     return math.sqrt(sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2)))
 
+
 """Sorting Algorithm"""
-def mergeSort(arr):
+
+
+def merge_sort(arr):
     if len(arr) <= 1:
         return arr
-    
+
     mid = len(arr) // 2
     l_arr = arr[:mid]
     r_arr = arr[mid:]
-    
-    l_arr = mergeSort(l_arr)
-    r_arr = mergeSort(r_arr)
-    
+
+    l_arr = merge_sort(l_arr)
+    r_arr = merge_sort(r_arr)
+
     return merge(l_arr, r_arr)
-    
+
+
 def merge(l_arr, r_arr):
     res = []
-    i=0
+    i = 0
     j = 0
-    
+
     while i < len(l_arr) and j < len(r_arr):
         if l_arr[i] < r_arr[j]:
             res.append(l_arr[i])
@@ -43,11 +48,12 @@ def merge(l_arr, r_arr):
             j += 1
     res += l_arr[i:]
     res += r_arr[j:]
-    
+
     return res
 
-def quickSort(arr):
-    if len(arr)<=1:
+
+def quick_sort(arr):
+    if len(arr) <= 1:
         return arr
     pivot = arr[0]
     l_arr = []
@@ -57,10 +63,9 @@ def quickSort(arr):
             l_arr.append(arr[i])
         else:
             r_arr.append(arr[i])
-    return quickSort(l_arr) + [pivot] + quickSort(r_arr)
+    return quick_sort(l_arr) + [pivot] + quick_sort(r_arr)
 
 
-    
 def closest_pair_bf(points):
     """get the closest pair from point set using brute force
 
@@ -84,22 +89,23 @@ def closest_pair_bf(points):
 
     return nearest_pair, min_dist, op_count
 
+
 def closest_pair_dnc(points):
     """get the closest pair from point set using divide and conquer
 
     :points: set (list) of points (tuple of numbers)
-    :return: closest pair of points, minimum distance, euclidean distance count
+    :return: the closest pair of points, minimum distance, euclidean distance count
     """
     p_count = len(points)
     dimension = len(points[0])
-    if (p_count <= 3):
+    if p_count <= 3:
         return closest_pair_bf(points)
     else:
-        imedian = p_count // 2
-        median_point = points[imedian]
-        pair1, dist1, ecount1 = closest_pair_dnc(points[:imedian])
-        pair2, dist2, ecount2 = closest_pair_dnc(points[imedian:])
-        
+        i_median = p_count // 2
+        median_point = points[i_median]
+        pair1, dist1, euclid_count1 = closest_pair_dnc(points[:i_median])
+        pair2, dist2, euclid_count2 = closest_pair_dnc(points[i_median:])
+
         min_dist = min(dist1, dist2)
         min_pair = []
         if dist1 != dist2:
@@ -107,13 +113,13 @@ def closest_pair_dnc(points):
         else:
             min_pair = pair1 + pair2
 
-        total_ecount = ecount1 + ecount2
-        
+        total_euclid_count = euclid_count1 + euclid_count2
+
         delta_strip = []
         for p in points:
             if abs(p[0] - median_point[0]) < min_dist:
                 delta_strip.append(p)
-        
+
         delta_count = len(delta_strip)
         for i in range(delta_count):
             for j in range(i + 1, delta_count):
@@ -123,14 +129,12 @@ def closest_pair_dnc(points):
 
                 if within_delta:
                     dist3 = euclid_distance(delta_strip[i], delta_strip[j])
-                    total_ecount += 1
-                    
+                    total_euclid_count += 1
+
                     if dist3 < min_dist:
                         min_dist = dist3
                         min_pair = []
                     if dist3 <= min_dist:
                         min_pair.append((delta_strip[i], delta_strip[j]))
-        
-        return min_pair, min_dist, total_ecount
 
-
+        return min_pair, min_dist, total_euclid_count
