@@ -5,7 +5,7 @@ Tugas Kecil Mata Kuliah IF2211 Strategi Algoritma 2023 - Closest Pair
 ## **Table of Contents**
 * [General Information](#general-information)
 * [Requirements](#requirements)
-* [How to Run and Compile](#how-to-run-and-compile)
+* [How to Run and Compile (Windows)](#how-to-run-and-compile-windows)
 * [Screenshot](#screenshot)
 * [Program Structure](#program-structure)
 * [Author](#author)
@@ -14,14 +14,14 @@ Tugas Kecil Mata Kuliah IF2211 Strategi Algoritma 2023 - Closest Pair
 >The closest pair of points problem is a classic problem in computational geometry and computer science. The problem is to find the pair of points in a set of points that are closest to each other. Given a set of n points in a d-dimensional plane, the problem is to find the pair of points with the smallest Euclidean distance between them.
 
 
-In this repository, the solution for the closest pair problem is implemented using the *divide and counquer* algorithm.
+In this repository, the solution for the closest pair problem is implemented using the *divide and conquer* algorithm.
 
 ## **Requirements**
 To use this program, you will need to install **Python3** (https://www.python.org/downloads/) on the device you are using. You will also need **matplotlib** to be installed before running the program.
 * Matplotlib Library
-  ```sh
-  pip install matplotlib
-  ```
+```sh
+$ pip install matplotlib
+```
 ## **How to Run and Compile (Windows)**
 ### **Setup**
 1. Clone this repository <br>
